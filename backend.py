@@ -144,11 +144,11 @@ def _download_book(book_id: str) -> Optional[str]:
             logger.info(f"Moving book to ingest directory then renaming: {book_path} -> {intermediate_path} -> {final_path}")
             try:
                 # First copy to intermediate path
-                shutil.copy2(book_path, intermediate_path)
-                # Remove the original file
-                os.remove(book_path)
+                shutil.copyfile(book_path, intermediate_path)
                 # Then rename to final path
                 os.rename(intermediate_path, final_path)
+                # Remove the original file
+                os.remove(book_path)
             except Exception as e:
                 logger.error_trace(f"Error in file operations: {e}")
                 # Cleanup any partial files
