@@ -143,13 +143,22 @@ def _download_book(book_id: str) -> Optional[str]:
         if os.path.exists(book_path):
             logger.info(f"Moving book to ingest directory then renaming: {book_path} -> {intermediate_path} -> {final_path}")
             try:
-                shutil.move(book_path, intermediate_path)
-            except Exception as e:
-                logger.debug(f"Error moving book: {e}, will try copying instead")
-                shutil.copy(book_path, intermediate_path)
+                # First copy to intermediate path
+                shutil.copy2(book_path, intermediate_path)
+                # Remove the original file
                 os.remove(book_path)
-            logger.info(f"Renaming book: {intermediate_path} -> {final_path}")
-            os.rename(intermediate_path, final_path)
+                # Then rename to final path
+                os.rename(intermediate_path, final_path)
+            except Exception as e:
+                logger.error_trace(f"Error in file operations: {e}")
+                # Cleanup any partial files
+                for path in [intermediate_path, final_path]:
+                    if os.path.exists(path):
+                        try:
+                            os.remove(path)
+                        except:
+                            pass
+                raise
         return str(final_path)
     except Exception as e:
         logger.error_trace(f"Error downloading book: {e}")
