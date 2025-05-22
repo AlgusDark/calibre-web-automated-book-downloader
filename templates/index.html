@@ -48,11 +48,13 @@
             <!-- Search Section -->
             <section class="uk-section-xxsmall uk-padding">
                 <div class="uk-container uk-width-expand">
-                    <form class="uk-search uk-search-default uk-width-expand">
-                        <input class="uk-search-input" type="search" placeholder="Search by ISBN, title, author..." aria-label="Search books" id="search-input">
-                        <button class="uk-search-icon-flip" uk-search-icon id="search-button" type="button"></button>
-                    </form>
-                    <button class="uk-button uk-button-default uk-float-right" uk-toggle="target: #search-filters" type="button">Advanced Search</button>
+                    <div class="uk-flex uk-flex-between uk-flex-middle uk-flex-wrap uk-margin-bottom-small">
+                        <form class="uk-search uk-search-default uk-width-expand uk-margin-small-right">
+                            <input class="uk-search-input" type="search" placeholder="Search by ISBN, title, author..." aria-label="Search books" id="search-input">
+                            <button class="uk-search-icon-flip" uk-search-icon id="search-button" type="button"></button>
+                        </form>
+                        <button class="uk-button uk-button-default" uk-toggle="target: #search-filters" type="button">Advanced Search</button>
+                    </div>
                     <form hidden id="search-filters" class="uk-search uk-search-default uk-inline uk-width-expand uk-flex uk-flex-wrap">
                         <div class="search-filter">
                             <label for="isbn-input">ISBN</label>
@@ -136,7 +138,7 @@
                     </div>
                     <div class="results-content">
                     <button class="uk-button uk-button-primary uk-margin-small" id="download-selected-button" disabled>Download Selected</button>
-                        <div class="uk-overflow-auto">
+                        <div class="uk-overflow-auto uk-table-responsive">
                             <table id="results-table" class="uk-table uk-table-hover uk-table-divider" role="grid">
                                 <thead>
                                     <tr>
@@ -182,7 +184,7 @@
                         <span>Loading...</span>
                     </div>
                     <div class="status-content">
-                        <div class="uk-overflow-auto">
+                        <div class="uk-overflow-auto uk-table-responsive">
                             <table id="status-table" class="uk-table uk-table-hover uk-table-divider" role="grid">
                                 <thead>
                                     <tr>

@@ -315,6 +315,64 @@ th[data-sort="index"] {
         padding: 0.5rem;
         font-size: 0.875rem;
     }
+
+    #search-filters {
+        flex-direction: column;
+        align-items: stretch; /* Or flex-start, depending on desired alignment */
+    }
+
+    .search-filter {
+        max-width: 100%; /* Or none, to allow full width */
+        margin-bottom: 0.5rem; /* Optional: for spacing between filters */
+    }
+
+    /* Ensure full width for inputs and selects within advanced search filters */
+    #search-filters .search-filter .uk-search-input,
+    #search-filters .search-filter .uk-select {
+        width: 100% !important; /* Override uk-width-4-5 */
+    }
+
+    /* Header adjustments for small screens */
+    header .uk-heading-medium {
+        font-size: 1.5rem; /* Reduce heading size */
+        margin-bottom: 0.5rem; /* Add some space below if it wraps */
+    }
+
+    header .uk-flex-between {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: center; /* Center items when wrapped */
+    }
+    
+    header .uk-margin-right {
+        margin-right: 0 !important; /* Remove right margin if buttons wrap to new line */
+        margin-top: 0.5rem; /* Add some top margin if they wrap */
+    }
+
+    /* Modal padding adjustments */
+    .details-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Footer adjustments */
+    footer .uk-heading-xxsmall {
+        font-size: 0.875rem; /* Reduce footer heading size */
+    }
+
+    footer .uk-icon-link svg { /* Target SVG within the icon link */
+        width: 24px;  /* Adjust size of the GitHub icon */
+        height: 24px; /* Adjust size of the GitHub icon */
+    }
+
+    /* Ensure Advanced Search button is full width on mobile */
+    #search-filters .uk-button {
+        width: 100%;
+        margin-left: 0; /* Remove any auto left margins if they exist from uk-margin-auto-left */
+    }
+    /* Explicitly remove margin for the wrapper if it was creating issues, though width:100% on button might be enough */
+    #search-filters div[class*="uk-margin-auto-left"] {
+        margin-left: 0 !important;
+    }
 }
 
 /* Accessibility */
